@@ -1,0 +1,237 @@
+body {
+    background-color: #f4f7f9;
+    padding-top: 60px;
+}
+
+
+/*  text shadow  */
+.text_shadow_strong {
+    text-shadow: 0 3px 6px rgba(0,0,0,0.25);
+}
+
+/*  Padding and margin */
+
+.padding-20 { padding: 20px; }
+.padding-30 { padding: 30px; }
+.padding-v-10 { padding-top: 10px;padding-bottom: 10px; }
+.padding-v-20 { padding-top: 20px;padding-bottom: 20px; }
+.padding-v-30 { padding-top: 30px;padding-bottom: 30px; }
+.padding-v-40 { padding-top: 40px;padding-bottom: 40px; }
+.padding-v-50 { padding-top: 50px;padding-bottom: 50px; }
+.padding-v-80 { padding-top: 80px;padding-bottom: 80px; }
+.padding-v-120 { padding-top: 120px;padding-bottom: 120px; }
+
+.padding-h-5 { padding-left: 5px; padding-right: 5px; }
+.padding-h-10 { padding-left: 10px; padding-right: 10px; }
+.padding-h-40 { padding-left: 40px; padding-right: 40px; }
+.padding-h-80 { padding-left: 80px; padding-right: 80px; }
+
+
+.padding-top-10 { padding-top: 10px; }
+.padding-top-20 { padding-top: 20px; }
+.padding-top-30 { padding-top: 30px; }
+.padding-top-40 { padding-top: 40px; }
+.padding-top-50 { padding-top: 50px; }
+.padding-top-60 { padding-top: 60px; }
+
+.padding-bottom-10 { padding-bottom: 10px; }
+.padding-bottom-20 { padding-bottom: 20px; }
+.padding-bottom-30 { padding-bottom: 30px; }
+
+.margin-top-20 { margin-top: 20px; }
+.margin-top-60 { margin-top: 60px; }
+
+.margin-bottom-10 { margin-bottom: 10px; }
+.margin-bottom-20 { margin-bottom: 20px; }
+.margin-bottom-30 { margin-bottom: 30px; }
+
+/*  font color  */
+.text_gray { color: #6a737b; }
+.text_brown { color: #8a7967; }
+.text_green { color: #008374; }
+
+/*  Form box  */
+.form_box { border-radius: 5px;box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);}
+
+/*  button color  */
+.btn_orange { background-color: #ff9933; }
+.btn_red { background-color: #ff6c5f; }
+
+/*  buttons  */
+.game_normal_btn {
+    width: 100%;
+    height: 180px;
+    padding: 60px 0px 50px 0px;
+}
+
+.btn_margin { margin-top: 10px; margin-right: 15px;}
+
+/*  images   */
+.image_inline_block { display: inline-block; width: 100%; }
+.ucbl_logo { display: inline-block; width: 35%; border-radius: 10px; }
+
+
+/*  Navigation  */
+.nav-shadow {
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+}
+
+/*  Table   */
+
+tr { background-color: #fff;box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);}
+.parking-row { margin: 50px;border-radius: 25px !important;}
+.table-icon { height: 20px;-webkit-transition: all 0.3s ease-out; transition: all 0.3s ease-out; padding-right: 10px;}
+.table-icon:hover { opacity: 0.7;}
+
+/*  width   */
+.width_600 {
+    width: 600px;
+    display: inline-block;
+}
+
+
+/*  statistiques  */
+.stats_num {
+    font-size: 60px;
+    color: #007bff;
+}
+
+/*  footer  */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+/******************************************************************************
+Slider Utility
+ */
+.utility {
+    position : absolute;
+    z-index: 2;
+    top: 100%;
+    animation: slide 2s infinite;
+    width: 100%;
+    height: 600px;
+}
+
+.slider {
+    position : absolute;
+    z-index: 1;
+    animation: slide 2s infinite;
+    width: 100%;
+    height: 600px;
+    background-color: #F85A40;
+}
+
+.button {
+    text-align: center;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -100%);
+    width: 80px;
+    height: 40px;
+    border-radius: 80px 80px 0 0;
+    background: radial-gradient(farthest-side at 50% 100%, #F85A40 70%, rgba(248, 90, 64, 0) 70%, rgba(0, 0, 0, 0));
+}
+
+.utility:hover > .slider {
+    box-shadow: 0 0 40px #F85A40;
+}
+
+.utility:hover > .button {
+    background: radial-gradient(farthest-side at 50% 100%, #F85A40 70%, rgba(248, 90, 64, 0.9) 70%, rgba(0, 0, 0, 0));
+}
+
+.button:hover > .figure {
+    animation: shake 0.4s linear;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(0, 15px);
+    }
+    25% {
+        transform: translate(3px, 20px);
+    }
+    75% {
+        transform: translate(-3px, 10px);
+    }
+    100% {
+        transform: translate(0, 15px);
+    }
+}
+
+.slide_down {
+    animation: slide_down 0.1s linear forwards;
+}
+
+.figure {
+    width: 12px;
+    height: 12px;
+    background-color: #F85A40;
+    border: 3px solid whitesmoke;
+    transform: translate(0, 15px);
+}
+
+@keyframes slide_down {
+    0% {
+        transform: translate(0, -100%);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.slide_up {
+    animation: slide_up 0.1s linear forwards;
+}
+
+@keyframes slide_up {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(0, -100%);
+    }
+}
+
+.row > .col-8 {
+    background-color: #F85A40;
+    padding: 30px;
+}
+
+.row > .col-4 {
+    background-color: #46529D;
+}
+
+.table_info {
+    color: white;
+    border: none;
+}
+
+/*       Map       */
+#map {
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#map {
+    width: 100%;
+    margin: 50px 0 3000px;
+}
+#map iframe{
+    width: 100%;
+    display: block;
+    pointer-events: none;
+    position: relative; /* IE needs a position other than static */
+}
+#map iframe.clicked{
+    pointer-events: auto;
+}

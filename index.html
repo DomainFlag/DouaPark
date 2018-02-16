@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<!-- Required meta tags -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+	<!-- CSS dependencies -->
+	<link rel="stylesheet" type="text/css" href="css/custom.css"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+  	<link rel="icon" href="img/logo_favicon.png">
+
+  	<title>DouaPark</title>
+  </head>
+  <body>
+
+	  <!--HEADER-->
+
+	  <header>
+		  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-shadow">
+			  <div class="container-fluid padding-h-40">
+				  <a class="navbar-brand" href="#"><img src="img/logo.svg" width="50%" height="50%" class=""/></a>
+				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#project_menu" aria-controls="project_menu" aria-expanded="false" aria-label="Toggle navigation">
+					  <span class="navbar-toggler-icon"></span>
+				  </button>
+				  <div class="collapse navbar-collapse" id="project_menu">
+					  <ul class="navbar-nav mr-auto">
+						  <li class="nav-item padding-h-5">
+							  <a class="nav-link" href="#"><strong>Accueil</strong></span></a>
+						  </li>
+						  <li class="nav-item padding-h-5">
+							  <a class="nav-link" href="#"><strong>Campus Map</strong></a>
+						  </li>
+						  <li class="nav-item padding-h-5">
+							  <a class="nav-link" href="#"><strong>Add a Parking</strong></span></a>
+						  </li>
+						  <!--<li class="nav-item padding-h-5">-->
+							  <!--<a class="nav-link" href="index.php?page=game_advanced.php"><strong>Mode avancé </strong><span class="badge badge-secondary btn_orange">New</span></a>-->
+						  <!--</li>-->
+					  </ul>
+				  </div>
+				  <form class="form-inline">
+				  	<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				  	<button class="btn btn-primary text-white" type="submit">Search</button>
+				  </form>
+			  </div>
+		  </nav>
+	  </header>
+
+	  <!--TABLE-->
+
+	  <div class="container-fluid padding-top-60 padding-h-40">
+			<div class="row">
+				<div class="col-xl-9 col-md-12 padding-h-40">
+					<h2 class="padding-bottom-20 d-inline-block font-weight-bold">List of Parkings</h2>
+					<button type="button" class="btn btn-secondary float-right " data-toggle="collapse" data-target="#table" aria-expanded="true">Show/Hide</button>
+					<p class="padding-bottom-10 text_gray">Affichage des parkings déjà renseignés (nom, type de véhicules, coordonnées GPS, nombre de places, email responsable, système de comptage) sous forme d'un tableau (comportant une dizaine de lignes "codées en dur" pour les tests)</p>
+					<div id="table" class="collapse show table-responsive" aria-expanded="true">
+						<table class="table table-hover">
+							<thead class="bg-primary">
+							<tr class="parking-row">
+								<th>Nom</th>
+								<th>Type de véhicules</th>
+								<th>Coordonnées GPS</th>
+								<th>Nombre de places</th>
+								<th>Email responsable</th>
+								<th>Système de comptage</th>
+								<th>Options</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td>Nautibus</td>
+								<td>Voitures</td>
+								<td>123.345</td>
+								<td>56</td>
+								<td>mail@univ-lyon1.fr</td>
+								<td>Caputures</td>
+								<td><a href="#"><img src="img/settings.svg" class="table-icon"></a><a href="#"><img src="img/rubbish-bin.svg" class="table-icon"></a></td>
+							</tr>
+							<tr>
+								<td>Nautibus</td>
+								<td>Voitures</td>
+								<td>123.345</td>
+								<td>56</td>
+								<td>mail@univ-lyon1.fr</td>
+								<td>Caputures</td>
+								<td><a href="#"><img src="img/settings.svg" class="table-icon"></a><a href="#"><img src="img/rubbish-bin.svg" class="table-icon"></a></td>
+							</tr>
+							<tr>
+								<td>Nautibus</td>
+								<td>Voitures</td>
+								<td>123.345</td>
+								<td>56</td>
+								<td>mail@univ-lyon1.fr</td>
+								<td>Caputures</td>
+								<td><a href="#"><img src="img/settings.svg" class="table-icon"></a><a href="#"><img src="img/rubbish-bin.svg" class="table-icon"></a></td>
+							</tr>
+							<tr>
+								<td>Nautibus</td>
+								<td>Voitures</td>
+								<td>123.345</td>
+								<td>56</td>
+								<td>mail@univ-lyon1.fr</td>
+								<td>Caputures</td>
+								<td><a href="#"><img src="img/settings.svg" class="table-icon"></a><a href="#"><img src="img/rubbish-bin.svg" class="table-icon"></a></td>
+							</tr>
+							<tr>
+								<td>Nautibus</td>
+								<td>Voitures</td>
+								<td>123.345</td>
+								<td>56</td>
+								<td>mail@univ-lyon1.fr</td>
+								<td>Caputures</td>
+								<td><a href="#"><img src="img/settings.svg" class="table-icon"></a><a href="#"><img src="img/rubbish-bin.svg" class="table-icon"></a></td>
+							</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-xl-3 col-md-12 bg-white padding-30 form_box">
+					<h2 class="padding-bottom-20 font-weight-bold">Add new parking</h2>
+					<form>
+						<div class="form-row">
+							<div class="form-group col-md-6 text_gray">
+								<label for="inputEmail4">Nom de parking</label>
+								<input type="text" class="form-control" id="inputEmail4" placeholder="Nom...">
+							</div>
+							<div class="form-group col-md-6 text_gray">
+								<label for="inputPassword4">Type de véhicules</label>
+								<input type="text" class="form-control" id="inputPassword4" placeholder="Type de véhicules">
+							</div>
+						</div>
+						<div class="form-row">
+							<h4 class="font-weight-bold text_gray">Coordonnées GPS</h4><br>
+							<div class="col-12"></div>
+							<p class="text-primary"><a href="https://www.coordonnees-gps.fr/" target="_blank">Obtenir les coordonnées GPS</a></p>
+							<div class="col-12"></div>
+							<div class="form-group col-md-3 text_gray">
+								<label>Latitude</label>
+								<input type="text" class="form-control" id="Latitude" placeholder="48.86..">
+							</div>
+							<div class="form-group col-md-3 text_gray">
+								<label for="inputState">Longitude</label>
+								<input type="text" class="form-control" id="Longitude" placeholder="2.234..">
+							</div>
+							<div class="form-group col-md-6 text_gray">
+								<label>Nombre de places</label>
+								<input type="text" class="form-control" id="places" placeholder="Ex. 45">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-12 text_gray">
+								<label for="inputEmail4">Email</label>
+								<input type="email" class="form-control" id="inputEmail4" placeholder="exemple@univ-lyon1.fr">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-12 text_gray">
+								<label for="inputState">Système de comptage</label>
+								<select id="inputState" class="form-control">
+									<option selected>Choose...</option>
+									<option value="">...</option>
+									<option value="captures">Caputures</option>
+									<option value="cameras">Cameras</option>
+								</select>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-primary btn-block">Ajouter Parking</button>
+					</form>
+				</div>
+				<!--<div class="utility">-->
+					<!--<div class="button">-->
+						<!--<div class="figure"></div>-->
+					<!--</div>-->
+					<!--<div class="slider">-->
+						<!--<div class="row">-->
+							<!--<div id="map"></div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			</div>
+
+		  <!--FOOTER SECTION HERE-->
+
+		  <footer>
+			  <div class="container-fluid padding-top-60 padding-h-40">
+				  <div class="row padding-v-50">
+					  <div class="col-md-3 col-sm-12">
+						  <a href="https://www.univ-lyon1.fr/" target="_blank"><img src="img/ucbl-logo.png" alt="UCBL LOGO" class="ucbl_logo"></a>
+					  </div>
+					  <div class="col-md-5 col-sm-12">
+						  <div class="padding-top-40">
+							  <a href="http://liris.cnrs.fr/~sjeandau/enseignement/IHM/index.html" target="_blank" alt="Page LIFIHM">LifIHM - Interactions Homme-Machine en Licence informatique de l'UCBL</a>
+						  </div>
+					  </div>
+					  <div class="col-md-4 col-sm-12">
+						  <div class="padding-top-40 text-right">
+							  <p>Copyright © 2018 <strong>Cristian Chivriga & Majd ODEH</strong></p>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+		  </footer>
+
+	  </div>
+	<!-- Optional JavaScript -->
+  	<script src="js/script.js"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKfZaL0aBsrWohb54sAiKRMLItyI4nBew&callback=initMap"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+	<script src="js/jarallax.min.js"></script>
+	<script src="js/jarallax-element.min.js"></script>
+	<script src="js/jarallax-video.min.js"></script>
+
+	<script type="text/javascript">
+        // object-fit polyfill run
+//        objectFitImages();
+
+        /* init Jarallax */
+        jarallax(document.querySelectorAll('.jarallax'));
+
+        jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+            keepImg: true,
+        });
+	</script>
+
+  </body>
+</html>
