@@ -55,47 +55,27 @@ function initMap() {
     });
 }
 
-// $('map')
-//     .click(function(){
-//         $(this).find('iframe').addClass('clicked')})
-//     .mouseleave(function(){
-//         $(this).find('iframe').removeClass('clicked')});
+let header = document.querySelector("nav");
+let footer = document.querySelector("footer");
 
-/*  Toggle button text  */
-// $(function(){
-//     $(".collapseButton").click(function () {
-//         $(this).text(function(i, text){
-//             return text === "Show" ? "Hide" : "Show";
-//         })
-//     });
-// })
+let content = [document.querySelector(".main"), document.querySelector("#map")];
 
-// var toggleButton = $(".collapseButton");
-// toggleButton.on("click", function() {
-//     toggleButton.data("text-original", toggleButton.text());
-//     toggleButton.text(toggleButton.data("text-swap"));
-// });
+let selected = 0;
+let nav_links = document.getElementsByClassName("nav-link");
+for(let g = 0; g < nav_links.length; g++) {
+    nav_links[g].addEventListener("click", function(e) {
+        if(selected !== g) {
+            content[selected].style.display = "none";
+            content[g].style.display = "initial";
+            selected = g;
+        }
 
-$("#collapseButton").button();
-$('[#collapseButton]').click(function(){
-    $(this).button('toggle');
-    if ($(this).text()==="Closed"){
-        $(this).button('open');
-    }
-    else {
-        $(this).button('reset');
-    }
-});
-
-
-$(".collapseButton").toggle(function() {
-    $(this).text("DON'T PUSH ME");
-}, function() {
-    $(this).text("PUSH ME");
-});
-
-/*  Table delete row    */
-
-function deleteParkingRow(Element) {
-    Element.parent()
+        if(selected === 1) {
+            header.style.backgroundColor = "transparent";
+            footer.style.display = "none";
+        } else {
+            header.style.backgroundColor = "initial";
+            footer.style.display = "initial !important";
+        }
+    });
 }

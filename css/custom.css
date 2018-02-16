@@ -1,6 +1,14 @@
+html, body {
+    height: 100%;
+}
+
 body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
     background-color: #f4f7f9;
-    padding-top: 60px;
+    overflow: hidden;
 }
 
 
@@ -61,7 +69,7 @@ body {
 .game_normal_btn {
     width: 100%;
     height: 180px;
-    padding: 60px 0px 50px 0px;
+    padding: 60px 0 50px 0;
 }
 
 .btn_margin { margin-top: 10px; margin-right: 15px;}
@@ -97,10 +105,29 @@ tr { background-color: #fff;box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);}
     color: #007bff;
 }
 
-/*  footer  */
-.footer {
+header {
+    z-index: 2;
+    width: 100%;
+}
+
+.main {
+    margin: 40px;
+    flex: 1;
+    display: flex;
+    width: 100%;
+}
+
+/*  Map  */
+#map {
+    flex: 1;
+    z-index: 0;
     position: absolute;
-    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*  Footer  */
+.footer {
     width: 100%;
     background-color: #f5f5f5;
 }
@@ -212,26 +239,4 @@ Slider Utility
 .table_info {
     color: white;
     border: none;
-}
-
-/*       Map       */
-#map {
-    z-index: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-#map {
-    width: 100%;
-    margin: 50px 0 3000px;
-}
-#map iframe{
-    width: 100%;
-    display: block;
-    pointer-events: none;
-    position: relative; /* IE needs a position other than static */
-}
-#map iframe.clicked{
-    pointer-events: auto;
 }
