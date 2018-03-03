@@ -42,6 +42,12 @@ let matrices = {
             0, 1, 0,
             0, 0, 1,
         ]
+    },
+    "vector" : function(nb) {
+        let coordinates = [];
+        for(g = 0; g < nb*3; g++)
+            coordinates.push(0);
+        return coordinates;
     }
 };
 
@@ -59,6 +65,15 @@ function multiplyMatrices() {
         }
     }
     return mat;
+}
+
+function multiplyMatrixWithVector(matrix, vector) {
+    let result = matrices["vector"](vector.length/3);
+    for(let t = 0; t < vector.length/3; t++)
+        for(let g = 0; g < 3; g++)
+            for(let h = 0; h < 3; h++)
+                result[t*3+g] += vector[t*3+h]*matrix[h*3+g];
+    return result;
 }
 
 function Vector(x, y) {
@@ -92,6 +107,19 @@ function Coordinates(longitude, latitude) {
     };
 }
 
+Coordinates.prototype.toString = function() {
+    return "" +
+        this.longitude.degree + "° " +
+        this.longitude.minutes + "' " +
+        this.longitude.seconds + "\" " +
+        this.longitude.direction + "\n" +
+
+        this.latitude.degree + "° " +
+        this.latitude.minutes + "' " +
+        this.latitude.seconds + "\" " +
+        this.latitude.direction;
+};
+
 let directions = {
     "north": 1,
     "east": 1,
@@ -101,8 +129,8 @@ let directions = {
 
 Coordinates.prototype.decimal = function() {
     return {
-        "long" : directions[this.longitude.direction]*(this.longitude.degree + this.longitude.minutes/60 + this.longitude.seconds/3600),
-        "lat" : directions[this.latitude.direction]*(this.latitude.degree + this.latitude.minutes/60 + this.latitude.seconds/3600)
+        "lat" : directions[this.latitude.direction]*(this.latitude.degree + this.latitude.minutes/60 + this.latitude.seconds/3600),
+        "lng" : directions[this.longitude.direction]*(this.longitude.degree + this.longitude.minutes/60 + this.longitude.seconds/3600)
     };
 };
 
@@ -115,30 +143,32 @@ function Lot() {
 
 Lot.prototype.fetchCoordinates = function(offset) {
     return [
-        -1, -1,
-        -1, this.height,
-        -1+offset, this.height,
-        -1+offset, this.height,
-        -1+offset, -1,
-        -1, -1,
+        -1, -1, 1,
+        -1, this.height, 1,
+        -1+offset, this.height, 1,
+        -1+offset, this.height, 1,
+        -1+offset, -1, 1,
+        -1, -1, 1,
 
-        -1+offset, -1,
-        -1+offset, this.height,
-        this.width, this.height,
-        this.width, this.height,
-        this.width, -1,
-        -1+offset, -1
+        -1+offset, -1, 1,
+        -1+offset, this.height, 1,
+        this.width, this.height, 1,
+        this.width, this.height, 1,
+        this.width, -1, 1,
+        -1+offset, -1, 1
     ];
 };
 
-
-function Park(latitude, longitude) {
-    this.name = "Nautibus";
-    this.coordinates = new Coordinates(latitude, longitude);
+function Park(name, vehicle, latitude, longitude, places, email, system) {
+    this.name = name;
+    this.vehicle = vehicle;
+    this.coordinates = new Coordinates(longitude, latitude);
     this.places = {
-        "reserved" : 30,
-        "free" : 12
+        "reserved" : places,
+        "free" : places-15
     };
+    this.email = email;
+    this.control = system;
     this.lot = new Lot();
 }
 
@@ -151,19 +181,19 @@ Park.prototype.fetchCoordinates = function() {
 
 Park.prototype.checkBounds = function(coordinates) {
     let coord = this.coordinates.decimal();
-    return coord["long"] >= coordinates["south"] &&
-        coord["long"] <= coordinates["north"] &&
-        coord["lat"] >= coordinates["west"] &&
-        coord["lat"] <= coordinates["east"];
+    return coord["lng"] >= coordinates["west"] &&
+        coord["lng"] <= coordinates["east"] &&
+        coord["lat"] >= coordinates["south"] &&
+        coord["lat"] <= coordinates["north"];
 };
 
 Park.prototype.clipCoordinates = function(coordinates) {
-    let offsetLat = coordinates["east"] - coordinates["west"];
-    let offsetLong = coordinates["north"] - coordinates["south"];
+    let offsetLng = coordinates["east"] - coordinates["west"];
+    let offsetLat = coordinates["north"] - coordinates["south"];
 
     let coord = this.coordinates.decimal();
-    this.lot.translation.x = (coord["lat"]-coordinates["west"])/offsetLat*2.0-1;
-    this.lot.translation.y = (coord["long"]-coordinates["south"])/offsetLong*2.0-1;
+    this.lot.translation.x = (coord["lng"]-coordinates["west"])/offsetLng*2.0-1;
+    this.lot.translation.y = (coord["lat"]-coordinates["south"])/offsetLat*2.0-1;
 };
 
 
@@ -173,33 +203,28 @@ Park.prototype.transformationMatrix = function() {
     let translation = matrices["translation"](this.lot.translation.x-clipspaceOffsetX/2, this.lot.translation.y-clipspaceOffsetY/2);
     let rotation = matrices["rotation"](Math.sin(this.lot.angle), Math.cos(this.lot.angle));
 
-    return multiplyMatrices(translationOForth, rotation, translation);
+    return multiplyMatrices(translationOForth, translation);
 };
 
 function DouaPark() {
     this.parking = [];
     this.bound = [];
-    this.insertParkLoot("45°46'53\"north", "4°52'20\"east");
+    this.insertParkLoot("Nautibus", "Car", "45°46'53\"north", "4°52'20\"east", 20, "Cchivriga@hotmail.com", "Camera");
+    this.insertParkLoot("Grignard", "Car", "45°46'56\"north", "4°52'15\"east", 18, "DomainFlag2@gmail.com", "Camera");
+    this.insertParkLoot("Quoi 43", "Car", "45°46'50\"north", "4°52'12\"east", 18, "DomainFlag2@gmail.com", "Camera");
+    this.insertParkLoot("Chisinau", "Bicycle", "47°00'33.1\" north", "28°49'29.3\"east", 100, "Cchivriga@hotmail.com", "Wood");
 }
 
-DouaPark.prototype.insertParkLoot = function(latitude, longitude) {
-    this.parking.push(new Park(latitude, longitude));
+DouaPark.prototype.insertParkLoot = function(name, vehicle, latitude, longitude, places, email, system) {
+    this.parking.push(new Park(name, vehicle, latitude, longitude, places, email, system));
 };
 
 DouaPark.prototype.fetchCoordinates = function() {
     let coordinates = [];
-    for(let g = 0; g < this.parking.length; g++) {
-        coordinates = coordinates.concat(this.parking[g].fetchCoordinates());
+    for(let g = 0; g < this.bound.length; g++) {
+        coordinates = coordinates.concat(multiplyMatrixWithVector(this.bound[g].transformationMatrix(), this.bound[g].fetchCoordinates()));
     }
     return coordinates;
-};
-
-DouaPark.prototype.transformationMatrices = function() {
-// let matrices = [];
-// for(let g = 0; g < this.bound.length; g++) {
-//     matrices = (matrices.concat(this.bound[g].transformationMatrix())).concat(this.bound[g].transformationMatrix());
-// }
-    return this.bound[0].transformationMatrix();
 };
 
 function hexToRgb(hex) {
@@ -229,22 +254,23 @@ DouaPark.prototype.colors = function() {
     let palette = [];
     for(let g = 0; g < this.bound.length; g++) {
         for(let h = 0; h < 6; h++) {
-            palette = palette.concat(colors[g%colors.length]);
+            palette = palette.concat(colors[g*2%colors.length]);
         }
         for(let h = 0; h < 6; h++) {
-            palette = palette.concat(colors[(g+1)%colors.length]);
+            palette = palette.concat(colors[(g*2+1)%colors.length]);
         }
     }
     return palette;
 };
 
+let douaPark = new DouaPark();
+
 let vertexShaderSource = `
     attribute vec3 a_position;
     attribute vec3 a_color;
-    uniform mat3 u_matrix;
     varying vec3 v_color;
     void main() {
-        gl_Position = vec4(u_matrix*vec3(a_position.xy, 1), 1);
+        gl_Position = vec4(vec3(a_position.xy, 0), 1);
         v_color = a_color;
     }
 `;
@@ -293,8 +319,6 @@ function resize(gl) {
         gl.canvas.height = displayHeight;
     }
 }
-
-let douaPark = new DouaPark();
 
 // canvas.addEventListener("mousedown", mousedown);
 // let focused = null;
@@ -404,13 +428,11 @@ function drawMap(gl) {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(douaPark.colors()), gl.STATIC_DRAW);
     gl.vertexAttribPointer(a_color, 3, gl.FLOAT, false, 0, 0);
 
-    gl.uniformMatrix3fv(u_matrix, false, douaPark.transformationMatrices());
-
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(douaPark.fetchCoordinates()), gl.STATIC_DRAW);
-    gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(positionLocation, 3, gl.FLOAT, false, 0, 0);
 
-    gl.drawArrays(gl.TRIANGLES, 0, douaPark.parking.length*12);
+    gl.drawArrays(gl.TRIANGLES, 0, douaPark.bound.length*12);
 }
 
 function boundMap(coordinates) {
@@ -418,7 +440,7 @@ function boundMap(coordinates) {
     for(let g = 0; g < douaPark.parking.length; g++) {
         if(douaPark.parking[g].checkBounds(coordinates)) {
             douaPark.bound.push(douaPark.parking[g]);
-            douaPark.parking[g].clipCoordinates(coordinates);
+            douaPark.bound[douaPark.bound.length-1].clipCoordinates(coordinates);
         }
     }
 
@@ -430,7 +452,7 @@ function boundMap(coordinates) {
     }
 }
 
-let u_matrix, a_color, positionLocation;
+let a_color, positionLocation;
 let positionBuffer, colorBuffer;
 
 if(gl) {
@@ -441,7 +463,6 @@ if(gl) {
     let program = createProgram(gl, vertexShader, fragmentShader);
 
     positionLocation = gl.getAttribLocation(program, "a_position");
-    u_matrix = gl.getUniformLocation(program, "u_matrix");
     a_color = gl.getAttribLocation(program, "a_color");
 
     positionBuffer = gl.createBuffer();

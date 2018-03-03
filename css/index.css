@@ -82,6 +82,24 @@ body {
     background-color: #ff6e4a;
 }
 
+.suggestions {
+    top: 40px;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    height: auto;
+}
+
+.suggestion {
+    display: block;
+    padding: 8px;
+    color: #8B8B8B;
+}
+
+.suggestion:hover {
+    background-color: #F0F0F0;
+}
+
 /* Content */
 .content {
     z-index: 1;
@@ -154,7 +172,7 @@ body {
     background: radial-gradient(farthest-side at 50% 100%, #F85A40 70%, rgba(248, 90, 64, 0.9) 70%, rgba(0, 0, 0, 0));
 }
 
-.button:hover > .figure {
+.button:hover > .box {
     animation: shake 0.4s linear;
 }
 
@@ -177,7 +195,7 @@ body {
     animation: slide_down 0.1s linear forwards;
 }
 
-.figure {
+.box {
     position: relative;
     width: 12px;
     height: 12px;
@@ -209,16 +227,46 @@ body {
     }
 }
 
+.row {
+    height: 100%;
+}
+
 .row > .col-8 {
     background-color: #F85A40;
     padding: 30px;
 }
 
 .row > .col-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #46529D;
+}
+
+th, td {
+    border: none !important;
+}
+
+.toy {
+    display: none;
 }
 
 .table_info {
     color: white;
     border: none;
+}
+
+.form-group > label {
+    color: white;
+}
+
+.btn {
+    transition: none;
+    border: none;
+    background-color: #F85A40;
+}
+
+.btn:hover {
+    border: 1px solid #ff6e4a;
+    background-color: #ff6e4a;
 }
