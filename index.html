@@ -14,21 +14,98 @@
 <body>
 <!-- Header -->
 <div class="header">
+
     <img class="logo" src="./img/logo_circle.svg">
+
     <form class="search">
         <input class="search_input" type="text" placeholder="Search"/>
+
         <div class="menu">
             <img src="./img/search.svg"/>
-            <img src="./img/menu.svg"/>
+            <img class="settings" src="./img/menu.svg"/>
         </div>
-        <div class="suggestions">
 
-        </div>
+        <div class="suggestions"></div>
     </form>
+
 </div>
 <!-- Content -->
 <div id="map"></div>
+<div id="settings">
+    <div class="settings_header">
+        <h1 class="settings_header_text">DouaPark</h1>
+        <img class="settings_header_img" src="./img/back.svg">
+    </div>
+    <div class="settings_details">
+        <ul class="settings_details_list">
+            <li>
+                <img src="./img/database.svg">
+                Data
+            </li>
+            <li>
+                <img src="./img/languages.svg">
+                Languages
+            </li>
+            <li>
+                <img src="./img/preferences.svg">
+                Preferences
+            </li>
+            <li>
+                <img src="./img/about.svg">
+                About
+            </li>
+        </ul>
+    </div>
+    <div class="settings_disclaimer">
+        <h1 class="settings_disclaimer_text">@All rights reserved p1608951 | p1612186</h1>
+    </div>
+</div>
+<div id="popup">
+    <div class="popup_content">
+        <img class="park_close" src="./img/close.svg">
+        <div class="park_header">
+            <h1 class="park_name">
+                Nautibus
+            </h1>
+            <div class="park_legend">
+                <div class="park_legend_col">
+                    <span class="opened_park"></span>
+                    <h1 class="park_legend_text">Opened</h1>
+                </div>
+                <div class="park_legend_col">
+                    <span class="closed_park"></span>
+                    <h1 class="park_legend_text">Closed</h1>
+                </div>
+            </div>
+        </div>
+        <div class="park">
+            <div class="park_controller">
+                <div class="entrance"></div>
+                <div class="exit"></div>
+            </div>
+            <div class="places">
+                <div class="park_row">
+                    <div class="park_place opened_park"></div>
+                    <div class="park_place opened_park"></div>
+                    <div class="park_place closed_park"></div>
+                    <div class="park_place opened_park"></div>
+                    <div class="park_place opened_park"></div>
+                    <div class="park_place opened_park"></div>
+                </div>
+                <div class="park_row">
+                    <div class="park_place opened_park"></div>
+                    <div class="park_place closed_park"></div>
+                    <div class="park_place closed_park"></div>
+                    <div class="park_place opened_park"></div>
+                    <div class="park_place opened_park"></div>
+                    <div class="park_place closed_park"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <canvas class="map"></canvas>
+
 <div class="utility">
     <div class="button">
         <div class="box"></div>

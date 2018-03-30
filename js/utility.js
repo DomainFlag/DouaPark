@@ -219,6 +219,10 @@ DouaPark.prototype.insertParkLoot = function(name, vehicle, latitude, longitude,
     this.parking.push(new Park(name, vehicle, latitude, longitude, places, email, system));
 };
 
+DouaPark.prototype.fetchCoordinate = function(park) {
+    return multiplyMatrixWithVector(park.transformationMatrix(), park.fetchCoordinates());
+};
+
 DouaPark.prototype.fetchCoordinates = function() {
     let coordinates = [];
     for(let g = 0; g < this.bound.length; g++) {
@@ -319,6 +323,29 @@ function resize(gl) {
         gl.canvas.height = displayHeight;
     }
 }
+
+canvas.addEventListener("click", mousedown);
+
+function mousedown(e) {
+    let minX, minY, maxX, maxY;
+    for(let g = 0; g < douaPark.parking.length; g++) {
+        let coordinates = douaPark.fetchCoordinate(douaPark.parking[g]);
+        minX = coordinates[0];
+        minY = coordinates[1];
+        maxX = coordinates[6];
+        maxY = coordinates[7];
+
+        let clipspaceX = e.pageX/canvas.getBoundingClientRect().width*2.0-1.0;
+        let clipspaceY = -(e.pageY/canvas.getBoundingClientRect().height*2.0-1.0);
+
+        if(clipspaceX >= minX && clipspaceX <= maxX &&
+            clipspaceY >= minY && clipspaceY <= maxY) {
+            popup.style.display = "flex";
+            popup.className = "popup_appear_in";
+        }
+    }
+}
+
 
 // canvas.addEventListener("mousedown", mousedown);
 // let focused = null;

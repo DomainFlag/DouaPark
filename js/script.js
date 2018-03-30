@@ -4,6 +4,30 @@ let table = document.querySelector("table");
 let tr = table.getElementsByClassName("toy")[0];
 let tbody = table.querySelector("tbody");
 
+let mapEl = document.getElementById("map");
+
+let settingsButton = document.querySelector(".settings");
+let settings = document.querySelector("#settings");
+let settingsBack = document.querySelector(".settings_header_img");
+settingsButton.addEventListener("click", (e) => {
+    settings.className = "slide_left_in";
+});
+
+mapEl.addEventListener("click", () => {
+    settings.className = "slide_left_out";
+});
+
+settingsBack.addEventListener("click", () => {
+    settings.className = "slide_left_out";
+});
+
+let popup = document.querySelector("#popup");
+let park_close = document.querySelector(".park_close");
+park_close.addEventListener("click", () => {
+    popup.className = "popup_appear_out";
+    popup.style.display = "none";
+});
+
 let flag_slide_down = false;
 let utilityClass = utility.className;
 
@@ -30,6 +54,7 @@ document.querySelector(".btn").addEventListener("click", (event) => {
         vehicleInput.value,
         latitudeInput.value,
         longitudeInput.value,
+        emailInput.value,
         emailInput.value,
         placesInput.value,
         systemInput.value);
